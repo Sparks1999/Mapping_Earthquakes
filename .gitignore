@@ -1,3 +1,6 @@
 # Ignore the config.js file.
 config.js
-.DS_Store
+**/*.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
