@@ -23,7 +23,7 @@ console.log("working");
 //     fillColor: 'yellow'
 // }).addTo(map);
 
-// // Add GeoJSON data.
+// Add GeoJSON data.
 // let sanFranAirport =
 // {"type":"FeatureCollection","features":[{
 //     "type":"Feature",
@@ -63,8 +63,9 @@ console.log("working");
 // L.geoJson(sanFranAirport, {
 //     onEachFeature: function(feature, layer) {
 //         console.log(layer);
-//         layer.bindPopup("<h2>" +'Airport Code: ' + feature.properties.faa);
-//     }
+//         layer.bindPopup("<h2>" +'Airport Code: ' + feature.properties.faa + "</h2>");
+//         layer.bindPopup('<h2> Airport Code: `${feature.properties.faa}`</h2>')
+//       }
 // }).addTo(map);
 
 // We create the tile layer that will be the background of our map.
