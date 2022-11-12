@@ -123,19 +123,33 @@ L.control.layers(baseMaps).addTo(map);
 let earthquake = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
 // Creating a GeoJSON layer with the retrieved data.
-L.geoJSON(earthquake, {
-
-  // We turn each feature into a circleMarker on the map.
-  
-  pointToLayer: function(feature, latlng) {
-              console.log(feature);
-              return L.circleMarker(latlng);
-          },
-      }).addTo(map);
-
-// Grabbing our GeoJSON data.
+// Retrieve the earthquake GeoJSON data.
 d3.json(earthquake).then(function(data) {
-    console.log(data);
-  // Creating a GeoJSON layer with the retrieved data.
-  L.geoJSON(data).addTo(map);
-});
+  L.geoJSON(data, {
+// We turn each feature into a circleMarker on the map.
+pointToLayer: function(feature, latlng) {
+  console.log(feature);
+  return L.circleMarker(latlng); }, },
+// This function returns the style data for each of the earthquakes we plot on
+// the map. We pass the magnitude of the earthquake into a function
+// to calculate the radius.
+function styleInfo(feature) {
+  return {
+    opacity: 1,
+    fillOpacity: 1,
+    fillColor: "#ffae42",
+    color: "#000000",
+    radius: getRadius(feature.properties.mag),
+    stroke: true,
+    weight: 0.5
+  };
+}
+        ).addTo(map);
+  });
+
+  // // Grabbing our GeoJSON data.
+  // d3.json(earthquake).then(function(data) {
+  //     console.log(data);
+  //   // Creating a GeoJSON layer with the retrieved data.
+  //   L.geoJSON(data).addTo(map);
+  // });
